@@ -3,7 +3,7 @@
     <div class="tab-holder">
       <div id="main" class="tab active">Main Floor</div>
       <div id="trauma" class="tab">Trauma</div>
-      <div id="emergency" class="tab">Emergency</div>
+      <div id="emergency" class="tab" draggable="true">Emergency</div>
       <div id="physical-therapy" class="tab">P.T.</div>
     </div>
 
@@ -156,6 +156,7 @@
             <div class="room-status room-status-available"></div>
             <div class="current-caregiver current-caregiver-unassigned"></div>
             <div class="current-patient current-patient-unassigned"></div>
+            
           </div>
         </div>
         <div class="hospital-room">
@@ -180,5 +181,7 @@
     <div id="emergency-floor" class="floor"></div>
     <div id="physical-therapy-floor" class="floor"></div>
   </div>
-  <div class="waiting-room">Waiting Room</div>
+  <div class="waiting-room">Waiting Room
+  <div class="box" cdkDrag draggable = true>Drag me around!</div>
+  </div>
 </div>
