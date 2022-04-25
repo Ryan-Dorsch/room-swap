@@ -10,12 +10,13 @@ import {MatNativeDateModule} from '@angular/material/core';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import { MaterialExampleModule } from 'src/material.module';
 import { RoomSwapComponent } from './room-swap/room-swap.component';
-
+import { MainFloorComponent } from './main-floor/main-floor.component'
 
 @NgModule({
   declarations: [
     AppComponent,
-    RoomSwapComponent
+    RoomSwapComponent,
+    MainFloorComponent
 
   ],
   imports: [
@@ -30,6 +31,6 @@ import { RoomSwapComponent } from './room-swap/room-swap.component';
     ReactiveFormsModule,
   ],
   providers: [DragDropModule],
-  bootstrap: [AppComponent]
+  bootstrap: [MainFloorComponent]
 })
 export class AppModule { }
