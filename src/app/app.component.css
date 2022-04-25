@@ -28,6 +28,18 @@
   padding-left: 5px;
   padding-top: 10px;
   z-index: 1;
+
+}
+
+.list {
+
+  border: solid 1px #ccc;
+    min-height: 60px;
+    background: white;
+    border-radius: 4px;
+    overflow: hidden;
+    display: block;
+
 }
 
 .tab-holder {
@@ -193,6 +205,11 @@
   height: 70px;
   border: 3px solid #e3e3e3;
   border-radius: 8px;
+
+  /* Container for patient drop */
+  display: inline-block;
+  vertical-align: top;
+
 }
 
 .active {

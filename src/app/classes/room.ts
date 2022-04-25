@@ -1,9 +1,8 @@
 import { Area } from "./area";
-import { Patient } from "./patients/patient";
+import { Patient } from "../patients/patient";
 import { User } from "./user";
 
 export class Room {
-    
     
     roomId:number;
     roomNumber:number;
@@ -11,7 +10,6 @@ export class Room {
     area:Area;
     patient:Patient;
     doctor:User;
-    
 
     constructor(roomId:number, roomNumber:number, area:Area, roomStatus:number, patient:Patient, doctor:User){
         this.roomId = roomId;

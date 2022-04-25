@@ -1,7 +1,8 @@
-import { Component, HostListener } from '@angular/core';
-
-
-
+import { Component, HostListener, OnInit } from '@angular/core';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { Patient } from './patients/patient';
+import { PatientService } from './services/patient.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -108,4 +109,34 @@ export class AppComponent {
       console.log('physical therapy brought to front');
     }
   }
+
+  constructor(public patientService: PatientService) {
+
+  }
+
+  todo = [
+
+    'Test Patient',
+    'Second Patient'
+
+  ];
+
+  done = ['test'];
+
+  room2 = ['second test'];
+
+  drop(event: CdkDragDrop<string[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      transferArrayItem(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
+    }
+  }
+
+
 }

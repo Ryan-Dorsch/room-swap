@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Area } from 'src/app/area';
-import { Room } from 'src/app//room';
-import { User } from '../user';
+import { Area } from '../classes/area';
+import { Room } from '../classes/room';
+import { User } from '../classes/user';
 import { Patient } from '../patients/patient';
 
 @Injectable({

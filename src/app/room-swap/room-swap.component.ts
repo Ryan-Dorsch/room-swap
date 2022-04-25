@@ -12,10 +12,12 @@ export class RoomSwapComponent {
 
 
   todo = [
+
     'Patient Nico',
     'Patient 2',
     'Patient 3',
     'pateient 4'
+    
   ];
 
   done = [

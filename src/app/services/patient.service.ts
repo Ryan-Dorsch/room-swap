@@ -3,8 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Patient } from 'src/app/patients/patient';
-import { Room } from 'src/app/room';
-import { RoomDto } from 'src/app/room-dto';
+import { Room } from '../classes/room';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -21,9 +20,14 @@ export class PatientService {
 
   private backendUrl = 'http://localhost:8094/wellnet/patient'
   public patient!: Patient;  
-  public room!: RoomDto;
   constructor(private router: Router, private http: HttpClient) {
  
+  }
+
+  getAll() {
+
+    return this.http.get<Patient[]>(this.backendUrl);
+
   }
 
   createPatient(patient : Patient){

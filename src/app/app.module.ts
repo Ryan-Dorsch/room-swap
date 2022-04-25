@@ -1,45 +1,35 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {DragDropModule} from '@angular/cdk/drag-drop';
-import { RoomSwapComponent } from './room-swap/room-swap.component';
-import {HttpClientModule} from '@angular/common/http';
-
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {MatNativeDateModule} from '@angular/material/core';
-
-import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSliderModule } from '@angular/material/slider';
+import {MatNativeDateModule} from '@angular/material/core';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 import { MaterialExampleModule } from 'src/material.module';
+import { RoomSwapComponent } from './room-swap/room-swap.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    RoomSwapComponent,
-    
+    RoomSwapComponent
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    MatSliderModule,
     BrowserAnimationsModule,
+    MatNativeDateModule,
     FormsModule,
     HttpClientModule,
-    DragDropModule,
-    
-    MatSliderModule,
     MaterialExampleModule,
-    MatNativeDateModule,
     ReactiveFormsModule,
   ],
-
-  entryComponents: [RoomSwapComponent],
   providers: [DragDropModule],
-  bootstrap: [AppComponent, RoomSwapComponent]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
-
-
