@@ -1,6 +1,6 @@
-import { Area } from "./area";
+import { Area } from "../classes/area";
 import { Patient } from "../patients/patient";
-import { User } from "./user";
+import { User } from "../classes/user";
 
 export class Room {
     

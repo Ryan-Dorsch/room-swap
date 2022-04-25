@@ -1,8 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { Patient } from 'src/app/patients/patient';
+import { map, Observable } from 'rxjs';
+import { Patient } from '../patients/patient';
 import { Room } from '../classes/room';
 
 const httpOptions = {
@@ -23,6 +23,7 @@ export class PatientService {
   constructor(private router: Router, private http: HttpClient) {
  
   }
+
 
   getAll() {
 

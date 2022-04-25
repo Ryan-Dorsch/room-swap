@@ -2,6 +2,8 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Patient } from './patients/patient';
 import { PatientService } from './services/patient.service';
+import { User } from 'src/app/classes/user';
+import { UserService } from './services/user.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -9,7 +11,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent {
+export class AppComponent{
   title = 'rooms';
   @HostListener('click')
   bringToFront() {
@@ -110,22 +112,88 @@ export class AppComponent {
     }
   }
 
-  constructor(public patientService: PatientService) {
 
+
+  ngOnInit(): void {
+    this.getUsers();
+    console.log(this.doctors);
+    console.log(this.nurses);
   }
+
+  getUsers(): void{
+    this.userService.getAll().subscribe (
+      (response: User[])=>{
+        console.log(response);
+        response.forEach(
+          (u: User)=>
+          {
+            console.log(u);
+            if(u.role.role == "nurse")
+            {
+              this.nurses.push(u);
+            }
+            else if(u.role.role == "doctor")
+            {
+              this.doctors.push(u); 
+            }
+          }
+        )
+      }
+    )
+  }
+
+
+  constructor(public patientService: PatientService, public userService: UserService) {
+  }
+
+  room1: any[] = [];
+
+  room2: any[] = [];
+
+  room3: any[] = [];
+
+  room4: any[] = [];
+
+  room5: any[] = [];
+
+  room6: any[] = [];
+
+  room7: any[] = [];
+
+  room8: any[] = [];
+
+  room9: any[] = [];
+
+  room10: any[] = [];
+
+  room11: any[] = [];
+
+  room12: any[] = [];
+
+  room13: any[] = [];
+
+  room14: any[] = [];
+
+  room15: any[] = [];
+
+  room16: any[] = [];
+
+  room17: any[] = [];
 
   todo = [
 
-    'Test Patient',
-    'Second Patient'
+    'ryan',
+    'steven',
+    'alfred',
+    'rachel'
 
   ];
 
-  done = ['test'];
+  doctors: any[] = [];
+  nurses: any[] = [];
 
-  room2 = ['second test'];
 
-  drop(event: CdkDragDrop<string[]>) {
+  drop(event: CdkDragDrop<any []>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
