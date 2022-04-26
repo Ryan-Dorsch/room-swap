@@ -80,23 +80,6 @@
     border: 3px solid #e3e3e3;
     transition: 0.3s;
   }
-
-   .button {
-
-    margin-top: 30px;
-    padding-top: 10px;
-    height: 60px; 
-    width: 200px;
-    border-radius: 20px;
-    transform: skew(-20deg);
-    opacity: 100;
-  }  
-
-  .doc {
-
-    opacity: 100;
-
-  }
   
   .tab:hover {
     background-color: #00bbf3;

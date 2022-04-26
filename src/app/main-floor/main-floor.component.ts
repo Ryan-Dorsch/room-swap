@@ -5,6 +5,13 @@ import { PatientService } from '../services/patient.service';
 import { User } from 'src/app/classes/user';
 import { UserService } from '../services/user.service';
 import { Subscription } from 'rxjs';
+import { TraumaFloorComponent } from '../trauma-floor/trauma-floor.component';
+import { Role } from '../classes/role';
+import { Sex } from '../patients/sex'; 
+import { Allergy } from '../patients/allergy';
+import { Vaccination } from '../patients/vaccination';
+import { Bloodtype } from '../patients/bloodtype';
+import { Specialization } from '../classes/specialization';
 
 @Component({
   selector: 'main-floor',
@@ -112,12 +119,12 @@ export class MainFloorComponent{
     }
   }
 
-
-
   ngOnInit(): void {
     this.getUsers();
+    this.getPatients();
     console.log(this.doctors);
     console.log(this.nurses);
+    console.log(this.patients);
   }
 
   getUsers(): void{
@@ -134,7 +141,7 @@ export class MainFloorComponent{
             }
             else if(u.role.role == "doctor")
             {
-              this.doctors.push(u); 
+              this.doctors.push(u);    
             }
           }
         )
@@ -142,9 +149,25 @@ export class MainFloorComponent{
     )
   }
 
+  getPatients(): void {
+    this.patientService.getAll().subscribe (
+      (response: Patient[]) => {
+        console.log(response);
+        response.forEach(
+          (p: Patient)=>
+          {
+            console.log(p);
+            this.patients.push(p);
+          }
+        )
+      }
+    )
+  
+  }
 
   constructor(public patientService: PatientService, public userService: UserService) {
   }
+
 
   room1: any[] = [];
 
@@ -180,18 +203,50 @@ export class MainFloorComponent{
 
   room17: any[] = [];
 
-  todo = [
 
-    'ryan',
-    'steven',
-    'alfred',
-    'rachel'
+  // Dummy data 
+  roleDoc: Role = { roleId: 0, role: 'doctor'};
+  roleNurse: Role = { roleId: 1, role: 'nurse'};
+
+  sex: Sex = {sexId: 0, sex: 'male'};
+  blood: Bloodtype = { typeId: 0, type: 'o'}
+  
+  gp: Specialization = Specialization.General_Practicioner;
+
+  doc: User = {id: '1', firstname: 'test', lastname: 'test', email: 'test', role: this.roleDoc, spec: Specialization.General_Practicioner};
+
+  doc2: User = {id: '2', firstname: 'second test', lastname: 'test', email: 'test', role: this.roleDoc, spec: Specialization.General_Surgeon};
+
+  nurse: User = {id: '1', firstname: 'nurse', lastname: 'test', email: 'test', role: this.roleNurse, spec : Specialization.General_Practicioner};
+
+  nurse2: User = {id: '2', firstname: 'sexy nurse', lastname: 'test', email: 'test', role: this.roleNurse, spec: Specialization.Pediatrician};
+
+  patient: Patient = {patientId: 0, firstName: 'TestPatient', lastName: 'TestPatient', dob: new Date() , height: 60, weight: 100, bloodType: this.blood, sex: this.sex }
+  // End of Dummy data
+
+  // Used to populate the rooms with nurses and doctors
+  mainFloor: any[] = [];
+
+  // Holds dummy data, comment out inside 
+  doctors: any[] = [
+
+    this.doc,
+    this.doc2
+  
+  ];
+
+  nurses: any[] = [
+
+    this.nurse,
+    this.nurse2
 
   ];
 
-  doctors: any[] = [];
-  nurses: any[] = [];
+  patients: any[] = [
 
+    this.patient
+
+  ];
 
   drop(event: CdkDragDrop<any []>) {
     if (event.previousContainer === event.container) {
@@ -204,6 +259,27 @@ export class MainFloorComponent{
         event.currentIndex
       );
     }
+  }
+
+
+  swap (event: CdkDragDrop<any []>) {
+    
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+      
+      // this.activedoctor = event.container.data;
+
+    } else {
+      transferArrayItem(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
+    }
+    
+     
+    
   }
 
 

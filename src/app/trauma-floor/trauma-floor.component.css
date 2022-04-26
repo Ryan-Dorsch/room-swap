@@ -80,23 +80,6 @@
     border: 3px solid #e3e3e3;
     transition: 0.3s;
   }
-
-   .button {
-
-    margin-top: 30px;
-    padding-top: 10px;
-    height: 60px; 
-    width: 200px;
-    border-radius: 20px;
-    transform: skew(-20deg);
-    opacity: 100;
-  }  
-
-  .doc {
-
-    opacity: 100;
-
-  }
   
   .tab:hover {
     background-color: #00bbf3;
@@ -256,3 +239,33 @@
     z-index: 0;
   }
   
+
+
+
+
+
+
+  
+
+.doctors-list {
+  width: 200px;
+  height: 200px;
+  border: solid 1px #ccc;
+  color: rgba(0, 0, 0, 0.87);
+  cursor: move;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+  border-radius: 4px;
+  transition: box-shadow 200ms cubic-bezier(0, 0, 0.2, 1);
+  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2),
+              0 2px 2px 0 rgba(0, 0, 0, 0.14),
+              0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}
+
+.doctors-list:active {
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+              0 8px 10px 1px rgba(0, 0, 0, 0.14),
+              0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}

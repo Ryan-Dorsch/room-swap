@@ -39,8 +39,8 @@ export class Patient {
             this.patientAllergies = allergies;
         }
     
-    public fullName(): string {
-        return this.firstName + " " + this.lastName;
-    }
+    // public fullName(): string {
+    //     return this.firstName + " " + this.lastName;
+    // }
 
 }

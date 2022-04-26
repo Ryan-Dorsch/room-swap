@@ -10,13 +10,19 @@ import {MatNativeDateModule} from '@angular/material/core';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import { MaterialExampleModule } from 'src/material.module';
 import { RoomSwapComponent } from './room-swap/room-swap.component';
-import { MainFloorComponent } from './main-floor/main-floor.component'
+import { MainFloorComponent } from './main-floor/main-floor.component';
+import { TraumaFloorComponent } from './trauma-floor/trauma-floor.component';
+import { EmergencyFloorComponent } from './emergency-floor/emergency-floor.component';
+import { PtFloorComponent } from './pt-floor/pt-floor.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     RoomSwapComponent,
-    MainFloorComponent
+    MainFloorComponent,
+    TraumaFloorComponent,
+    EmergencyFloorComponent,
+    PtFloorComponent
 
   ],
   imports: [
