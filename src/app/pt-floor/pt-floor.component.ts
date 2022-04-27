@@ -5,6 +5,12 @@ import { PatientService } from '../services/patient.service';
 import { User } from 'src/app/classes/user';
 import { UserService } from '../services/user.service';
 import { Subscription } from 'rxjs';
+import { Role } from '../classes/role';
+import { Sex } from '../patients/sex'; 
+import { Allergy } from '../patients/allergy';
+import { Vaccination } from '../patients/vaccination';
+import { Bloodtype } from '../patients/bloodtype';
+import { Specialization } from '../classes/specialization';
 
 @Component({
   selector: 'app-pt-floor',
@@ -15,12 +21,11 @@ export class PtFloorComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUsers();
-    console.log(this.doctors);
-    console.log(this.nurses);
+    this.getPatients();
+    console.log(this.pdoctors);
+    console.log(this.pnurses);
+    console.log(this.patients);
   }
-
-  doctors: any[] = [];
-  nurses: any[] = [];
 
   getUsers(): void{
     this.userService.getAll().subscribe (
@@ -32,16 +37,32 @@ export class PtFloorComponent implements OnInit {
             console.log(u);
             if(u.role.role == "nurse")
             {
-              this.nurses.push(u);
+              this.pnurses.push(u);
             }
             else if(u.role.role == "doctor")
             {
-              this.doctors.push(u); 
+              this.pdoctors.push(u); 
             }
           }
         )
       }
     )
+  }
+
+  getPatients(): void {
+    this.patientService.getAll().subscribe (
+      (response: Patient[]) => {
+        console.log(response);
+        response.forEach(
+          (p: Patient)=>
+          {
+            console.log(p);
+            this.patients.push(p);
+          }
+        )
+      }
+    )
+  
   }
 
   room401: any[] = [];
@@ -78,6 +99,24 @@ export class PtFloorComponent implements OnInit {
 
   room417: any[] = [];
 
+  roleDoc: Role = { roleId: 0, role: 'doctor'};
+  roleNurse: Role = { roleId: 1, role: 'nurse'};
+
+  sex: Sex = {sexId: 0, sex: 'male'};
+  blood: Bloodtype = { typeId: 0, type: 'o'}
+
+  pt: Specialization = Specialization.Pediatrician;
+
+  // Dummy data
+  doc2: User = {id: '2', firstname: 'second test', lastname: 'test', email: 'test', role: this.roleDoc, spec: Specialization.Pediatrician};
+  nurse: User = {id: '1', firstname: 'nurse', lastname: 'test', email: 'test', role: this.roleNurse, spec : Specialization.General_Practicioner};
+  // End of dummy 
+
+  pdoctors: any[] = [this.doc2];
+  pnurses: any[] = [this.nurse];
+  patients: any[] = []; 
+  ptFloor: any[] = [];
+
   drop(event: CdkDragDrop<any []>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
@@ -93,6 +132,4 @@ export class PtFloorComponent implements OnInit {
 
   constructor(public patientService: PatientService, public userService: UserService) {
   }
-
-
 }

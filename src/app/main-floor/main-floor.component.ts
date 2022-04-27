@@ -203,24 +203,20 @@ export class MainFloorComponent{
 
   room17: any[] = [];
 
-
-  // Dummy data 
   roleDoc: Role = { roleId: 0, role: 'doctor'};
   roleNurse: Role = { roleId: 1, role: 'nurse'};
 
   sex: Sex = {sexId: 0, sex: 'male'};
   blood: Bloodtype = { typeId: 0, type: 'o'}
   
-  gp: Specialization = Specialization.General_Practicioner;
+  pc: Specialization = Specialization.Primary_Care;
 
-  doc: User = {id: '1', firstname: 'test', lastname: 'test', email: 'test', role: this.roleDoc, spec: Specialization.General_Practicioner};
-
+  // Dummy data 
+  doc: User = {id: '0', firstname: 'test', lastname: 'test', email: 'test', role: this.roleDoc, spec: Specialization.Primary_Care};
+  doc1: User = {id: '1', firstname: 'test', lastname: 'test', email: 'test', role: this.roleDoc, spec: Specialization.General_Practicioner};
   doc2: User = {id: '2', firstname: 'second test', lastname: 'test', email: 'test', role: this.roleDoc, spec: Specialization.General_Surgeon};
-
   nurse: User = {id: '1', firstname: 'nurse', lastname: 'test', email: 'test', role: this.roleNurse, spec : Specialization.General_Practicioner};
-
   nurse2: User = {id: '2', firstname: 'sexy nurse', lastname: 'test', email: 'test', role: this.roleNurse, spec: Specialization.Pediatrician};
-
   patient: Patient = {patientId: 0, firstName: 'TestPatient', lastName: 'TestPatient', dob: new Date() , height: 60, weight: 100, bloodType: this.blood, sex: this.sex }
   // End of Dummy data
 
@@ -260,27 +256,4 @@ export class MainFloorComponent{
       );
     }
   }
-
-
-  swap (event: CdkDragDrop<any []>) {
-    
-    if (event.previousContainer === event.container) {
-      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-      
-      // this.activedoctor = event.container.data;
-
-    } else {
-      transferArrayItem(
-        event.previousContainer.data,
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex
-      );
-    }
-    
-     
-    
-  }
-
-
 }

@@ -2,28 +2,17 @@
     <div class="container">
       <div class="floor-holder">
         <div class="tab-holder">
-          <div id="main" class="tab active">
-            Main Floor
-            <div class="button"
-            cdkDropList 
-                 
-            [cdkDropListData]="mainFloor"
-            
-            (cdkDropListDropped)="drop($event)">
-          </div>
-          </div>
+          <div id="main" class="tab active">Main Floor</div>
           <div id="trauma" class="tab">Trauma</div>
           <div id="emergency" class="tab" >Emergency</div>
           <div id="physical-therapy" class="tab">P.T.</div>
           </div>
-    
           <div id="main-floor" class="floor active">
           <div class="floor-header">
-          <h2>Main Floor</h2>
+          <h2>Main Floor
+          </h2>
           </div>
-       
           <div class="room-row room-row-1">
-    
               <!-- Room Div -->
               <div class="hospital-room">
                 <!-- Container 101 -->
@@ -342,7 +331,7 @@
           [cdkDropListData]="doctors"
           (cdkDropListDropped)="drop($event)"
           *ngFor="let item of doctors">
-        <div class="box" *ngIf="item.spec === gp" cdkDrag>
+        <div class="box" *ngIf="item.spec === pc" cdkDrag>
           {{item.firstname}}
       </div>
     </div>
@@ -396,6 +385,13 @@
                 
                 <div class="hospital-room-column hospital-room check-in-station">
                   Check-In Station
+                  <div class="button"
+            cdkDropList 
+                 
+            [cdkDropListData]="mainFloor"
+            
+            (cdkDropListDropped)="drop($event)">
+          </div>
                 </div>
               </div>
               <div class="room-row-special">
@@ -694,7 +690,6 @@
         </div>
 <!-- beginning of trauma floor -->
         <div id="trauma-floor" class="floor">
-
           <app-trauma-floor></app-trauma-floor>
     </div>
 <!-- End of Trauma floor -->

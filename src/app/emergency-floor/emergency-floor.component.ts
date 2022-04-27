@@ -5,6 +5,12 @@ import { PatientService } from '../services/patient.service';
 import { User } from 'src/app/classes/user';
 import { UserService } from '../services/user.service';
 import { Subscription } from 'rxjs';
+import { Role } from '../classes/role';
+import { Sex } from '../patients/sex'; 
+import { Allergy } from '../patients/allergy';
+import { Vaccination } from '../patients/vaccination';
+import { Bloodtype } from '../patients/bloodtype';
+import { Specialization } from '../classes/specialization';
 
 @Component({
   selector: 'app-emergency-floor',
@@ -15,13 +21,11 @@ export class EmergencyFloorComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUsers();
+    this.getPatients();
     console.log(this.edoctors);
-    console.log(this.nurses);
+    console.log(this.enurses);
+    console.log(this.patients);
   }
-
-  edoctors: any[] = [];
-  nurses: any[] = [];
-  patients: any[] = [ ];
 
   getUsers(): void{
     this.userService.getAll().subscribe (
@@ -33,7 +37,7 @@ export class EmergencyFloorComponent implements OnInit {
             console.log(u);
             if(u.role.role == "nurse")
             {
-              this.nurses.push(u);
+              this.enurses.push(u);
             }
             else if(u.role.role == "doctor")
             {
@@ -60,7 +64,6 @@ export class EmergencyFloorComponent implements OnInit {
     )
   
   }
-
 
   room301: any[] = [];
 
@@ -96,6 +99,24 @@ export class EmergencyFloorComponent implements OnInit {
 
   room317: any[] = [];
 
+  roleDoc: Role = { roleId: 0, role: 'doctor'};
+  roleNurse: Role = { roleId: 1, role: 'nurse'};
+
+  em: Specialization = Specialization.General_Surgeon;
+
+  sex: Sex = {sexId: 0, sex: 'male'};
+  blood: Bloodtype = { typeId: 0, type: 'o'}
+
+  //Dummy data 
+  doc2: User = {id: '2', firstname: 'second test', lastname: 'test', email: 'test', role: this.roleDoc, spec: Specialization.Pediatrician};
+  nurse: User = {id: '1', firstname: 'nurse', lastname: 'test', email: 'test', role: this.roleNurse, spec : Specialization.General_Practicioner};
+  // End of dummy 
+
+  edoctors: any[] = [this.doc2];
+  enurses: any[] = [this.nurse];
+  patients: any[] = [];
+  emFloor: any[] = [];
+  
   constructor(public patientService: PatientService, public userService: UserService) {
   }
 
